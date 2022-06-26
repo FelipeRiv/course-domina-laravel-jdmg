@@ -1,0 +1,43 @@
+Uso de Factories update de laravel anteriores a laravel 8
+
+## OLD
+$cart = factory(App\Cart::class)->make();
+
+
+## LV 8
+Sin folder Models
+$cart = App\Cart::factory()->Create();
+
+Con folder MODELS
+$instance = App\Models\Cart::factory()->make();
+
+
+
+JT
+Seeders y Tinker en Laravel 7 sin error
+
+Para aquellos que esten tomando el curso con laravel 7 igual que yo; les dejo como solucione los errores de seeders.
+
+
+En tinker: $factory(App\Product::class, 10)->make();
+
+En seeders: $products = factory(Product::class, 5)->create();
+
+
+Espero les sirva. Saludos
+5 respuestas
+JuanD MeGon
+JuanD — Instructor
+hace 6 meses
+1
+1 voto
+
+Hola,
+
+En efecto. De modo general, cambia un poco el orden al llamar a factory().
+
+Como referencia para otros estudiantes, en este video está el detalle de cómo se implementaron los factories para los modelos, en Laravel 7: https://www.youtube.com/watch?v=yTBNyD6WF3o
+
+Gracias por compartirlo.
+
+Saludos.
