@@ -3,7 +3,7 @@ Uso de Factories update de laravel anteriores a laravel 8
 ## OLD 
 $cart = factory(App\Cart::class)->make();
 
-## NEW 8
+## NEW 8 remember the folder in the path if has any
 $cart = App\Cart::factory()->make();
 
 

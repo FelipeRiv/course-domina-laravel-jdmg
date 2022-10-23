@@ -17,8 +17,11 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->float('amount')->unsigned(); // 
             $table->timestamp('payed_at')->nullable();// date of this payment but it can be null bc it hasnt been processed  when the user actually pays the system fill the field
+            $table->bigInteger('order_id')->unsigned();
             //  order id FK  
             $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 

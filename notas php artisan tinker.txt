@@ -1,0 +1,20 @@
+
+
+56
+
+## memory
+$order = App\Models\Order::factory()->make();
+$payment = App\Models\Payment::factory()->make( ['order_id' => $order->id] );
+
+## DB
+$order = App\Models\Order::factory()->create();
+$payment = App\Models\Payment::factory()->create( ['order_id' => $order->id] );
+$order->payment;
+
+$payment->order;
+
+// other
+$payment->order();
+$payment->order()->get(); // where etc is a query builder
+
+---------------------------------------------------------

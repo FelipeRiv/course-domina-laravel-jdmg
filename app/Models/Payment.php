@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
+// use App\Order;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
@@ -17,6 +20,7 @@ class Payment extends Model
     protected $fillable = [
         'amount',
         'payed_at',
+        'order_id',
     ];
 
     /**
@@ -32,4 +36,9 @@ class Payment extends Model
     // We can use the attribute Date to make instances of Carbon with a field that we know is a date
 
     // In the model definition of Laravel Model.php  there is a trait called HasAttributes.php there is a block of code that is an array called dates to convert those field into dates and an instance of Carbon 
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
