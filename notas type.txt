@@ -1,7 +1,10 @@
 Uso de Factories update de laravel anteriores a laravel 8
 
-## OLD
+## OLD 
 $cart = factory(App\Cart::class)->make();
+
+## NEW 8
+$cart = App\Cart::factory()->make();
 
 
 ## LV 8

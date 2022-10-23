@@ -72,7 +72,7 @@ class ProductController extends Controller
         
         // * al no usar el helper de request() sino usar el isntanciado que usamos para el form request nos permite usar el metodo validated que retorna los validados en lugar de all
         // $product = Product::create(request()->all()); // se solicitan todos los campos y se llenan los que en el modelo estan en el array de fillable
-        $product = Product::create(request()->validated()); // se solicitan todos los campos y se llenan los que en el modelo estan en el array de fillable
+        $product = Product::create($request->validated()); // se solicitan todos los campos y se llenan los que en el modelo estan en el array de fillable
         // session()->flash('success', "The new product with id {$product->id} has been created "); // * se reemplaza por withSuccess
         // return $product;
         // return redirect()->back(); // hacia atras
