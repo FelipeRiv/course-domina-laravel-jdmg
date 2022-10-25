@@ -1,4 +1,5 @@
-
+#reset DB and store the fake data
+php artisan migrate:fresh --seed
 
 56
 
@@ -18,3 +19,24 @@ $payment->order();
 $payment->order()->get(); // where etc is a query builder
 
 ---------------------------------------------------------
+
+57
+
+$user = App\Models\User::factory()->create();
+
+$order = App\Models\Order::factory()->create(['customer_id' => $user->id]);
+
+$user->orders; // error if customer_id not configure correctly
+$order->user; // null if customer_id not configure correctly
+
+## create an order linked to a user - save does the save but it allows instances , make returns an obj if we want to use it we will have to parse it to an array to use create method but we can use save instead
+
+$user->orders()->save( App\Models\Order::factory()->make() );
+
+$user = App\Models\User::first();
+
+$user->orders; // a list of 2 if not create another order based on an user
+
+-----------------------------------------------------------
+
+

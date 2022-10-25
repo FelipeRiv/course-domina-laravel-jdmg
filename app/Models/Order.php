@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use App\Payment;
 use App\Models\Payment;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,10 +20,19 @@ class Order extends Model
      */
     protected $fillable = [
         'status',
+        'customer_id',
     ];
 
     public function payment()
     {
         return $this->hasOne(Payment::class);
     }
+
+    public function user()
+    {
+        // * laravel sets the foreign key automatically based on the table name but if we set another name we will have to set the name here
+        return $this->belongsTo(User::class, 'customer_id'); 
+    }
+
+
 }

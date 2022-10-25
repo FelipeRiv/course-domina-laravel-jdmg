@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Order;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -52,4 +54,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = ['admin_since']; // create an instance of Carbon 
+
+    public function orders()
+    {   
+        // * laravel sets the foreign key automatically based on the table name but if we set another name we will have to set the name here
+        return $this->hasMany(Order::class, 'customer_id');
+    }
 }
