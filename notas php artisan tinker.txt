@@ -39,4 +39,32 @@ $user->orders; // a list of 2 if not create another order based on an user
 
 -----------------------------------------------------------
 
+58 Usando y creando relaciones muchos a muchos con Eloquent
 
+php artisan make:migration CreateCartProductTable
+php artisan make:migration CreateOrderProductTable
+
+php artisan migrate:fresh --seed
+
+php artisan tinker
+
+$user = App\Models\User::factory()->create();
+$order = App\Models\Order::factory()->create(['customer_id' => $user->id]);
+
+$cart = App\Models\Cart::factory()->create();
+
+$cart->products; // empty
+$order->products; // empty
+
+$order->attach();
+
+// populate the relationship between tables in many to many relationship
+
+// * insert through the relationship between order and product
+// $order->products()->attach( [ 1,2,3,4] ); // * attach with the product ids it will fail bc we have the quantity linked to it
+
+// * we have to say the quantity for the product id 1 and the product id 2 etc 
+$order->products()->attach( [ 1 => ['quantity' => 4 ], 2 => ['quantity' => 5 ], 3 => ['quantity' => 3 ] ] );
+
+$order = $order->fresh();
+$order->products; // filled
