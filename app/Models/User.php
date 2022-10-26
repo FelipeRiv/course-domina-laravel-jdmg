@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Order;
+use App\Models\Payment;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -59,5 +60,11 @@ class User extends Authenticatable
     {   
         // * laravel sets the foreign key automatically based on the table name but if we set another name we will have to set the name here
         return $this->hasMany(Order::class, 'customer_id');
+    }
+
+    public function payments()
+    {
+        // * args where we want to go and through whom
+       return $this->hasManyThrough(Payment::class, Order::class, 'customer_id');
     }
 }

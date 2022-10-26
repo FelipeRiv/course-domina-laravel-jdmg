@@ -68,3 +68,31 @@ $order->products()->attach( [ 1 => ['quantity' => 4 ], 2 => ['quantity' => 5 ], 
 
 $order = $order->fresh();
 $order->products; // filled
+
+----------------------------------------------------
+
+59
+
+$user = App\Models\User::first();
+$user->payments; // empty
+
+$order = $user->orders()->save( App\Models\Order::factory()->make() );
+
+$user->orders;
+
+$order = $user->orders->first();
+
+$payment = $order->payment()->save( App\Models\Payment::factory()->make() );
+
+$user->payments; // empty
+
+$user = $user->fresh();
+
+$user->payments; 
+$user->orders; 
+
+$orders = $user->orders()->find(2);
+
+$order = $user->orders()->save( App\Models\Order::factory()->make() );
+$user = $user->fresh();
+$user->payments; 
