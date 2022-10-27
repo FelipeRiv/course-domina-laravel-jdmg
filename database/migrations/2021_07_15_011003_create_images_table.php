@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->string('path');// si necesitara ruta unica puedo usar unique pero de momento no
             $table->timestamps();
+            $table->morphs('imageable');// polymorphic relationship 1 to 1 - see the morphs code explanation
         });
     }
 

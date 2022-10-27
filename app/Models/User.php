@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Image;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -66,5 +67,11 @@ class User extends Authenticatable
     {
         // * args where we want to go and through whom
        return $this->hasManyThrough(Payment::class, Order::class, 'customer_id');
+    }
+
+    public function image()
+    {
+        // * args where we want to go and through whom
+       return $this->morphOne(Image::class, 'imageable');
     }
 }

@@ -96,3 +96,16 @@ $orders = $user->orders()->find(2);
 $order = $user->orders()->save( App\Models\Order::factory()->make() );
 $user = $user->fresh();
 $user->payments; 
+
+--------------------------------------------------------------
+
+60 domina las relaciones polimorfica uno a uno
+
+$user = App\Models\User::factory()->create();
+
+$user->image()->save( App\Models\Image::factory()->make() );
+
+$user->image;
+$image = $user->image;
+
+$image->imageable
