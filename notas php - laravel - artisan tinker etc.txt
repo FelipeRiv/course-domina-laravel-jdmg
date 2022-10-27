@@ -109,3 +109,24 @@ $user->image;
 $image = $user->image;
 
 $image->imageable
+
+--------------------------------------------------------------
+
+61 conoce las relaciones polimorficas de uno a muchos
+
+$product = App\Models\Product::find(2);
+
+$product->images()->save(  App\Models\Image::factory()->make() );
+
+$image = App\Models\Image::find(2);
+
+$image->imageable;
+
+$product->images;
+
+$product = $product->fresh();
+
+$product->images;
+
+--------------------------------------------------------------
+
