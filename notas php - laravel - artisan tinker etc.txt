@@ -130,3 +130,19 @@ $product->images;
 
 --------------------------------------------------------------
 
+62 Aprende sobre relaciones polimorficas de muchos a muchos
+
+$product = App\Models\Product::find(3);
+$cart = App\Models\Cart::factory()->create();
+$user = App\Models\User::factory()->create();
+$order = App\Models\Order::factory()->create(['customer_id' => $user->id]);
+
+// * can be the other way around that would be more common
+$products->orders()->attach( [ 1 => ['quantity' => 4 ] ] );
+$product->orders;
+
+$er = App\Models\Order::factory()->create(['customer_id' => $user->id]);
+$cart->products()->attach( [ $product->id => ['quantity' => 7 ] ] );
+
+$cart->products;
+--------------------------------------------------------------

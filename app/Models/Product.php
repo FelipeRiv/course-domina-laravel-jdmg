@@ -24,13 +24,15 @@ class Product extends Model
 
     public function carts()
     {
-        return $this->belongsToMany(Cart::class)->withPivot('quantity');
+        // return $this->belongsToMany(Cart::class)->withPivot('quantity'); // ! old relationship - now is a polimorphic
+        return $this->morphedByMany(Cart::class, 'productable')->withPivot('quantity');
     }
  
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class)->withPivot('quantity');
+        // return $this->belongsToMany(Order::class)->withPivot('quantity');// ! old relationship - now is a polimorphic
+        return $this->morphedByMany(Order::class, 'productable')->withPivot('quantity');
     }
 
     public function images()

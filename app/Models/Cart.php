@@ -12,8 +12,10 @@ class Cart extends Model
     use HasFactory;
 
    public function products()
-   {
-        return $this->belongsToMany(Product::class)->withPivot('quantity'); // withPivot retrieves this column
+   {    // ! old relationship - now is a polimorphic
+        // return $this->belongsToMany(Product::class)->withPivot('quantity'); // withPivot retrieves this column
+
+        return $this->morphToMany(Product::class, 'productable')->withPivot('quantity'); // withPivot retrieves this column
    }
 
 }
