@@ -146,3 +146,19 @@ $cart->products()->attach( [ $product->id => ['quantity' => 7 ] ] );
 
 $cart->products;
 --------------------------------------------------------------
+
+63 usando e insertando relaciones simples de modelos en el seeder de laravel
+
+tinker
+
+migrate:fresh --seed
+
+App\Models\User::all();
+App\Models\Order::all();
+
+$order = App\Models\Order::first();
+$order->payment;
+$order->user;
+
+
+--------------------------------------------------------------
