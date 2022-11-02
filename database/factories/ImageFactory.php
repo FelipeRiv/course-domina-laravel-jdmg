@@ -22,7 +22,8 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
-        $fileName = $this->faker->numberBetween(1, 10) . 'jpg';
+        // ! fixed with .jpg -> . missing
+        $fileName = $this->faker->numberBetween(1, 10) . '.jpg';
 
         return [
             'path' => "img/products/{$fileName}",
@@ -34,8 +35,8 @@ class ImageFactory extends Factory
      * Define a state to create a different path depending on the 
      */
     public function user(){
-            
-        $fileName = $this->faker->numberBetween(1, 5) . 'jpg';
+            // ! fixed with .jpg -> . missing
+        $fileName = $this->faker->numberBetween(1, 5) . '.jpg';
 
         return $this->state([
             'path' => "img/users/{$fileName}",

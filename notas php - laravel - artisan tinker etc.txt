@@ -181,3 +181,14 @@ $product->carts;
 
 
 --------------------------------------------------------------
+
+65 usando scopes de Eloquent y mejorando la visualizacion de productos
+
+    // * my own fix to images without . in the jpg extension
+
+    select path, substr(path, 1, length(path)-3 ) || '.jpg'
+    from images
+
+
+   UPDATE images
+	SET "path"=substr(path, 1, length(path)-3 ) || '.jpg'

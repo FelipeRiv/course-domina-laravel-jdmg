@@ -39,5 +39,11 @@ class Product extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    // * it is used as ::available
+    public function scopeAvailable($query)
+    {
+        $query->where('status', 'available');
+    }
  
 }
