@@ -151,7 +151,7 @@ $cart->products;
 
 tinker
 
-migrate:fresh --seed
+php artisan migrate:fresh --seed
 
 App\Models\User::all();
 App\Models\Order::all();
@@ -159,6 +159,25 @@ App\Models\Order::all();
 $order = App\Models\Order::first();
 $order->payment;
 $order->user;
+
+
+--------------------------------------------------------------
+
+64 usando e insertando relaciones polimorficas en el seeder de laravel
+
+
+php artisan migrate:fresh --seed
+
+php artisan tinker
+
+$images = App\Models\Image::all();
+$carts = App\Models\Cart::all();
+$product = App\Models\Product::first();
+$product->orders;
+$product->carts;
+
+
+
 
 
 --------------------------------------------------------------
