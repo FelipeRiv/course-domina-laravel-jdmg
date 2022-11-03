@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class ProductCartController extends Controller
 {
@@ -39,8 +40,9 @@ class ProductCartController extends Controller
      */
     public function store(Request $request, Product $product)
     {
+        // $cart = Cart::create();
+        $cart = $this->getFromCookieOrCreate();
         // $cart = $this->cartService->getFromCookieOrCreate();
-        $cart = Cart::create();
 
         $quantity = $cart->products()
             ->find($product->id)
@@ -53,20 +55,26 @@ class ProductCartController extends Controller
         //     ]);
         // }
 
-        $cart->products()->attach([
-            $product->id => ['quantity' => $quantity + 1],
-        ]);
+        // $cart->products()->attach([ // attach gives problems adding same product with different quantities 
+            // $product->id => ['quantity' => $quantity + 1],
+        // ]);
 
-        // $cart->products()->syncWithoutDetaching([
+        // $cart->products()->sync([ // sync verifies if exists and add it - but removes the rest 
         //     $product->id => ['quantity' => $quantity + 1],
         // ]);
 
+        $cart->products()->syncWithoutDetaching([ // * adds them but without delete them
+            $product->id => ['quantity' => $quantity + 1],
+        ]);
+
         // $cart->touch();
 
+        // $cookie = cookie()->make('cart', $cart->id, 7 * 24 * 60); // minutes
+        $cookie = Cookie::make('cart', $cart->id, 7 * 24 * 60); // minutes - facade
         // $cookie = $this->cartService->makeCookie($cart);
 
-        return redirect()->back();
-        // return redirect()->back()->cookie($cookie);
+        // return redirect()->back();
+        return redirect()->back()->cookie($cookie);
     }
 
     // /**
@@ -117,4 +125,15 @@ class ProductCartController extends Controller
     {
         //
     }
+
+    public function getFromCookieOrCreate()
+    {
+        // $cartId = cookie()->get('cart');
+        $cartId = Cookie::get('cart'); // facade
+        
+        $cart = Cart::find( $cartId);
+
+        return $cart ?? Cart::create();
+    }
+
 }

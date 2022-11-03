@@ -206,3 +206,7 @@ php artisan route:list
 
 --------------------------------------------------------------
 
+67 usando coockies en laravel para resolver el carrito de compras 
+
+--------------------------------------------------------------
+
