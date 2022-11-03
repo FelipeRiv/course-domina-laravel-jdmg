@@ -192,3 +192,17 @@ $product->carts;
 
    UPDATE images
 	SET "path"=substr(path, 1, length(path)-3 ) || '.jpg'
+
+--------------------------------------------------------------
+
+66 usando recursos aninados en laravel para agregar productos al carrito
+
+
+// * link a product to a cart 
+
+php artisan make:controller ProductCartController -m Cart -p Product
+
+php artisan route:list
+
+--------------------------------------------------------------
+

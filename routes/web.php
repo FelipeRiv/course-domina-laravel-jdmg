@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductCartController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +23,8 @@ Route::get('/', [MainController::class, 'index'])->name('main'); // alias de mi 
 
 // ## All these routes can be simplified in one with the resource route that is a gruop of routes that belongs to a specific resource like products it means that a resource is any of our models it uses the same methods index create show store etc
 Route::resource('products', ProductController::class);
+
+Route::resource('products.carts', ProductCartController::class)->only(['store', 'destroy']);
 
 // * In the same way as middlewares we can have only some routes that we actually want or make exception with except if we dont want some routes, if we test it but we have those methods in our controller it'll show an error so we have to comment or delete those methods there
 // ->only(['index', 'show']);
