@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MainController;
@@ -23,6 +24,8 @@ Route::get('/', [MainController::class, 'index'])->name('main'); // alias de mi 
 
 // ## All these routes can be simplified in one with the resource route that is a gruop of routes that belongs to a specific resource like products it means that a resource is any of our models it uses the same methods index create show store etc
 Route::resource('products', ProductController::class);
+
+Route::resource('carts', CartController::class)->only('index');
 
 Route::resource('products.carts', ProductCartController::class)->only(['store', 'destroy']);
 

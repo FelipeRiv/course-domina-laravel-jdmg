@@ -210,3 +210,10 @@ php artisan route:list
 
 --------------------------------------------------------------
 
+
+68 usando inyeccion de dependencias y mostrando los producctos de un carrito
+
+
+
+--------------------------------------------------------------
+

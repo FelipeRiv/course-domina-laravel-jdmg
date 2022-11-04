@@ -4,32 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
 class ProductCartController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @param  \App\Models\Product  $product
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index(Product $product)
-    // {
-    //     //
-    // }
+    public $cartService;
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @param  \App\Models\Product  $product
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create(Product $product)
-    // {
-    //     //
-    // }
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+        // dd($this->cartService);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -41,8 +28,8 @@ class ProductCartController extends Controller
     public function store(Request $request, Product $product)
     {
         // $cart = Cart::create();
-        $cart = $this->getFromCookieOrCreate();
-        // $cart = $this->cartService->getFromCookieOrCreate();
+        // $cart = $this->getFromCookieOrCreate();
+        $cart = $this->cartService->getFromCookieOrCreate();
 
         $quantity = $cart->products()
             ->find($product->id)
@@ -77,42 +64,6 @@ class ProductCartController extends Controller
         return redirect()->back()->cookie($cookie);
     }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Product  $product
-    //  * @param  \App\Models\Cart  $cart
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Product $product, Cart $cart)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Product  $product
-    //  * @param  \App\Models\Cart  $cart
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Product $product, Cart $cart)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Models\Product  $product
-    //  * @param  \App\Models\Cart  $cart
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, Product $product, Cart $cart)
-    // {
-    //     //
-    // }
 
     /**
      * Remove the specified resource from storage.
@@ -126,14 +77,14 @@ class ProductCartController extends Controller
         //
     }
 
-    public function getFromCookieOrCreate()
-    {
-        // $cartId = cookie()->get('cart');
-        $cartId = Cookie::get('cart'); // facade
+    // public function getFromCookieOrCreate()
+    // {
+    //     // $cartId = cookie()->get('cart');
+    //     $cartId = Cookie::get('cart'); // facade
         
-        $cart = Cart::find( $cartId);
+    //     $cart = Cart::find( $cartId);
 
-        return $cart ?? Cart::create();
-    }
+    //     return $cart ?? Cart::create();
+    // }
 
 }

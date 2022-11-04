@@ -2,19 +2,19 @@
 
 @section('content')
 
-    <h1>Welcome</h1>
+    <h1>Your Cart</h1>
 
-    @empty($products)
+    @if( $cart->products->isEmpty() )
     <div class="alert alert-danger">
-        No products yet...
+        cart is empty...
     </div>
 
     @else
         <div class="row">
 
-            {{-- Componente para reutilizar en las vistas donde se requiera para mostrar products --}}
+            {{-- Componente para reutilizar en las vistas donde se requiera para mostrar cart --}}
 
-            @foreach ($products as $product)
+            @foreach ($cart->products as $product)
 
                 <div class="col-3">
                     {{-- En caso de querer pasar valores extras en el include --}}
