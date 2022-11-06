@@ -16,32 +16,32 @@ class CartService
     //     $this->cookieExpiration = config('cart.cookie.expiration');
     // }
 
-    // public function getFromCookie()
-    // {
-    //     $cartId = Cookie::get($this->cookieName);
-
-    //     $cart = Cart::find($cartId);
-
-    //     return $cart;
-    // }
-
-    public function getFromCookieOrCreate()
+    public function getFromCookie()
     {
-        // $cartId = cookie()->get('cart');
-        // $cartId = Cookie::get('cart'); // facade
-        $cartId = Cookie::get($this->cookieName); // facade
-        
-        $cart = Cart::find( $cartId);
+        $cartId = Cookie::get($this->cookieName);
 
-        return $cart ?? Cart::create();
+        $cart = Cart::find($cartId);
+
+        return $cart;
     }
 
     // public function getFromCookieOrCreate()
     // {
-    //     $cart = $this->getFromCookie();
+    //     // $cartId = cookie()->get('cart');
+    //     // $cartId = Cookie::get('cart'); // facade
+    //     $cartId = Cookie::get($this->cookieName); // facade
+        
+    //     $cart = Cart::find( $cartId);
 
     //     return $cart ?? Cart::create();
     // }
+
+    public function getFromCookieOrCreate()
+    {
+        $cart = $this->getFromCookie();
+
+        return $cart ?? Cart::create();
+    }
 
     public function makeCookie(Cart $cart)
     {
@@ -50,14 +50,14 @@ class CartService
 
     }
 
-    // public function countProducts()
-    // {
-    //     $cart = $this->getFromCookie();
+    public function countProducts()
+    {
+        $cart = $this->getFromCookie();
 
-    //     if ($cart != null) {
-    //         return $cart->products->pluck('pivot.quantity')->sum();
-    //     }
+        if ($cart != null) {
+            return $cart->products->pluck('pivot.quantity')->sum();
+        }
 
-    //     return 0;
-    // }
+        return 0;
+    }
 }

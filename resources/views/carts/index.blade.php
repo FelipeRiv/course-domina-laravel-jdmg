@@ -4,7 +4,7 @@
 
     <h1>Your Cart</h1>
 
-    @if( $cart->products->isEmpty() )
+    @if( !isset($cart) || $cart->products->isEmpty() )
     <div class="alert alert-danger">
         cart is empty...
     </div>

@@ -223,3 +223,10 @@ php artisan route:list
 
 --------------------------------------------------------------
 
+
+70 usa colecciones e inyeccionen Blade para mostrar el contador del carrito
+
+
+
+--------------------------------------------------------------
+
