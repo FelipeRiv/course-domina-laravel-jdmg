@@ -21,21 +21,27 @@
                 {{ $product->stock }} left
             </strong>
         </p>
-
-        <form
-          class="d-inline"
-          method="POST"
-          action="{{ route('products.carts.store', ['product' => $product->id]) }}"
-        >
-            @csrf
-
-            <button
-              type="submit"
-              class="btn btn-success"
+        @if (isset($cart))
+            {{-- <p class="card-text">{{ $product->pivot->quantity }} in your cart <strong>(${{ $product->total }})</strong></p> --}}
+            <form
+                class="d-inline"
+                method="POST"
+                action="{{ route('products.carts.destroy', ['cart' => $cart->id, 'product' => $product->id]) }}"
             >
-                Add to Cart
-            </button>
-        </form>
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-warning">Remove From Cart</button>
+            </form>
+        @else
+            <form
+                class="d-inline"
+                method="POST"
+                action="{{ route('products.carts.store', ['product' => $product->id]) }}"
+            >
+                @csrf
+                <button type="submit" class="btn btn-success">Add To Cart</button>
+            </form>
+        @endif
 
     </div>
 

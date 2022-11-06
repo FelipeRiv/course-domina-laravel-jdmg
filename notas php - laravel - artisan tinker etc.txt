@@ -211,7 +211,13 @@ php artisan route:list
 --------------------------------------------------------------
 
 
-68 usando inyeccion de dependencias y mostrando los producctos de un carrito
+68 mejora el servicio del carrito y permite remover sus productos con laravel
+
+
+
+--------------------------------------------------------------
+
+69 usando inyeccion de dependencias y mostrando los producctos de un carrito
 
 
 

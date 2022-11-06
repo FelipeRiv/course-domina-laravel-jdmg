@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Cookie;
 
 class CartService
 {
-    // protected $cookieName;
-    // protected $cookieExpiration;
+    protected $cookieName = 'cart';
+    protected $cookieExpiration = 7 * 24 * 60; // minutes - facade;
 
     // public function __construct()
     // {
@@ -28,7 +28,8 @@ class CartService
     public function getFromCookieOrCreate()
     {
         // $cartId = cookie()->get('cart');
-        $cartId = Cookie::get('cart'); // facade
+        // $cartId = Cookie::get('cart'); // facade
+        $cartId = Cookie::get($this->cookieName); // facade
         
         $cart = Cart::find( $cartId);
 
@@ -42,10 +43,12 @@ class CartService
     //     return $cart ?? Cart::create();
     // }
 
-    // public function makeCookie(Cart $cart)
-    // {
-    //     return Cookie::make($this->cookieName, $cart->id, $this->cookieExpiration);
-    // }
+    public function makeCookie(Cart $cart)
+    {
+        return Cookie::make($this->cookieName, $cart->id, $this->cookieExpiration);
+        // return Cookie::make($this->cookieName, $cart->id, $this->cookieExpiration);
+
+    }
 
     // public function countProducts()
     // {

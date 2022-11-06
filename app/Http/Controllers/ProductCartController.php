@@ -57,15 +57,15 @@ class ProductCartController extends Controller
         // $cart->touch();
 
         // $cookie = cookie()->make('cart', $cart->id, 7 * 24 * 60); // minutes
-        $cookie = Cookie::make('cart', $cart->id, 7 * 24 * 60); // minutes - facade
-        // $cookie = $this->cartService->makeCookie($cart);
+        // $cookie = Cookie::make('cart', $cart->id, 7 * 24 * 60); // minutes - facade
+        $cookie = $this->cartService->makeCookie($cart);
 
         // return redirect()->back();
         return redirect()->back()->cookie($cookie);
     }
 
 
-    /**
+     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Product  $product
@@ -74,7 +74,13 @@ class ProductCartController extends Controller
      */
     public function destroy(Product $product, Cart $cart)
     {
-        //
+        $cart->products()->detach($product->id);
+
+        // $cart->touch();
+
+        $cookie = $this->cartService->makeCookie($cart);
+
+        return redirect()->back()->cookie($cookie);
     }
 
     // public function getFromCookieOrCreate()
