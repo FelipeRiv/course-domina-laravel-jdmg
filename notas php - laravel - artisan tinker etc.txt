@@ -230,3 +230,15 @@ php artisan route:list
 
 --------------------------------------------------------------
 
+71 confirmando e inicianod una orden desde el carrito de compras 
+
+
+
+--------------------------------------------------------------
+
+72 usando atributos computados en laravel para calcular los totales
+
+
+
+--------------------------------------------------------------
+

@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductCartController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,8 @@ Route::get('/', [MainController::class, 'index'])->name('main'); // alias de mi 
 Route::resource('products', ProductController::class);
 
 Route::resource('carts', CartController::class)->only('index');
+
+Route::resource('orders', OrderController::class)->only(['create', 'store']);
 
 Route::resource('products.carts', ProductCartController::class)->only(['store', 'destroy']);
 

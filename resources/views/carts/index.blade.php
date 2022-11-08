@@ -10,6 +10,11 @@
     </div>
 
     @else
+        {{-- <h4 class="text-center">Your cart total <strong>{{ $cart->total }}</strong></h4> --}}
+        <a class="btn btn-success mb-3" href="{{ route('orders.create') }}">
+            Start Order
+        </a>
+
         <div class="row">
 
             {{-- Componente para reutilizar en las vistas donde se requiera para mostrar cart --}}
