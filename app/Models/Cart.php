@@ -18,4 +18,10 @@ class Cart extends Model
         return $this->morphToMany(Product::class, 'productable')->withPivot('quantity'); // withPivot retrieves this column
    }
 
+   public function getTotalAttribute()
+   {
+        // * this total is not in db is from the other total in product model - watch 72 v
+       return $this->products->pluck('total')->sum();
+   }
+
 }

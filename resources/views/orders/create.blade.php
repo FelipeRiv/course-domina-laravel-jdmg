@@ -37,8 +37,8 @@
                     <td>{{ $product->pivot->quantity }}</td>
                     <td>
                         <strong>
-                            ${{ $product->pivot->quantity * $product->price }}
-                            {{-- ${{ $product->total }} --}}
+                            {{-- ${{ $product->pivot->quantity * $product->price }} --}}
+                            ${{ $product->total }}
                         </strong>
                     </td>
                 </tr>
