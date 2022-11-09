@@ -40,6 +40,16 @@ class Order extends Model
         // return $this->belongsToMany(Product::class)->withPivot('quantity');// ! old relationship - now is a polimorphic
         return $this->morphToMany(Product::class, 'productable')->withPivot('quantity');
     }
+
+    public function getTotalAttribute()
+    {
+        return $this->products->pluck('total')->sum();
+        // return $this->products()
+            // ->withoutGlobalScope(AvailableScope::class)
+            // ->get()
+            // ->pluck('total')
+            // ->sum();
+    }
  
 
 

@@ -3,7 +3,7 @@
 @section('content')
     <h1>Order Details</h1>
 
-    <h4 class="text-center"><strong>Grand Total: </strong> {{ $cart->total }}</h4>
+    <h4 class="text-center"><strong>.Grand Total: </strong> {{ $cart->total }}</h4>
 
     <div class="text-center mb-3">
         <form

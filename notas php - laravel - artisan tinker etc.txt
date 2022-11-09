@@ -248,3 +248,11 @@ php artisan route:list
 
 --------------------------------------------------------------
 
+
+74 usa un controlador de recursos aninados de laravel para cobrar una orden
+
+php artisan make:controller OrderPaymentController -m Payment -p Order
+php artisan migrate:fresh --seed
+
+--------------------------------------------------------------
+
