@@ -14,6 +14,7 @@ class OrderController extends Controller
     {
         $this->cartService = $cartService;
         // dd($cartService);
+        $this->middleware('auth');
     }
 
     /**
@@ -54,7 +55,37 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return DB::transaction(function() use($request) {
+            $user = $request->user();
+
+            $order = $user->orders()->create([
+                'status' => 'pending',
+            ]);
+
+            $cart = $this->cartService->getFromCookie();
+
+            $cartProductsWithQuantity = $cart
+                ->products
+                ->mapWithKeys(function ($product) {
+                    // $quantity = $product->pivot->quantity;
+
+                    // if ($product->stock < $quantity) {
+                    //     throw ValidationException::withMessages([
+                    //         'product' => "There is not enough stock for the quantity you required of {$product->title}",
+                    //     ]);
+                    // }
+
+                    // $product->decrement('stock', $quantity);
+                    $element[$product->id] = ['quantity' => $product->pivot->quantity];
+                    // $element[$product->id] = ['quantity' => $quantity];
+
+                    return $element;
+                });
+
+            $order->products()->attach($cartProductsWithQuantity->toArray());
+
+            // return redirect()->route('orders.payments.create', ['order' => $order]);
+        // }, 5);
     }
 
     /**

@@ -242,3 +242,9 @@ php artisan route:list
 
 --------------------------------------------------------------
 
+73 identificando el usuario autenticado con laravel para crear una orden
+
+
+
+--------------------------------------------------------------
+
