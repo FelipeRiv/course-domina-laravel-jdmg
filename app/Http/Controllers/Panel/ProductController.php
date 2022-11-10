@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Panel;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -10,13 +11,13 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
 
-    public function __construct()
-    {
-        // All funcitons inside this controller are protected with auth middleware
-        $this->middleware('auth');
-        // ->only(['index', 'create', 'etc']);  // solo a las que indico aca 
-        // ->except(['index', 'create', 'etc']);// excepto a las que indico aca 
-    }
+    // public function __construct()
+    // {
+    //     // All funcitons inside this controller are protected with auth middleware
+    //     $this->middleware('auth');
+    //     // ->only(['index', 'create', 'etc']);  // solo a las que indico aca 
+    //     // ->except(['index', 'create', 'etc']);// excepto a las que indico aca 
+    // }
 
 
     // * Query builder uses the Database and it's harder to make changes in the code if its needed bc the table name may change 

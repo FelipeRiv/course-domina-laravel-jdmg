@@ -256,3 +256,10 @@ php artisan migrate:fresh --seed
 
 --------------------------------------------------------------
 
+
+75 *problema rutas panel - separando las rutas del panel de administacion en laravel
+
+
+
+--------------------------------------------------------------
+
