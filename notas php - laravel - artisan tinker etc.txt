@@ -263,3 +263,31 @@ php artisan migrate:fresh --seed
 
 --------------------------------------------------------------
 
+76 determinando si un usuario es administrador usando el modelo y Carbon
+
+php artisan tinker
+
+App\Models\User::all();
+
+now();
+
+$user = App\Models\User::find(21);
+$user->isAdmin();
+
+$user->fill(['admin_since' => now()->addYears(5) ]); // not working
+// it works
+$user->forceFill(['admin_since' => now()->addYears(5) ]); 
+
+$user->save();
+$user->isAdmin();
+
+$user->forceFill(['admin_since' => now() ]); 
+
+$user->save();
+$user->isAdmin();
+
+
+
+
+--------------------------------------------------------------
+
