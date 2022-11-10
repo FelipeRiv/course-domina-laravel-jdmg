@@ -288,6 +288,10 @@ $user->isAdmin();
 
 
 
-
 --------------------------------------------------------------
 
+77 crea tu propios middleware en laravel para controlar el acceso administrativo
+*** check route provider and use of middlewares
+php artisan make:middleware CheckIfAdmin
+
+--------------------------------------------------------------
